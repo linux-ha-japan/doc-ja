@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tmx SYSTEM "tmx11.dtd">
+<tmx version="1.1">
+  <header
+    creationtool="OmegaT"
+    creationtoolversion="2.3.0_5"
+    segtype="sentence"
+    o-tmf="OmegaT TMX"
+    adminlang="EN-US"
+    srclang="EN-US"
+    datatype="plaintext"
+  >
+  </header>
+  <body>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Advanced Configuration</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091439Z" changeid="ikedaj">
+        <seg>Advanced Configuration</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Advanced Resource Types</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091442Z" changeid="ikedaj">
+        <seg>Advanced Resource Types</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Andrew</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091437Z" changeid="ikedaj">
+        <seg>Andrew</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Cluster Nodes</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091444Z" changeid="ikedaj">
+        <seg>Cluster Nodes</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Cluster Options</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091445Z" changeid="ikedaj">
+        <seg>［参考］ Cluster Nodes</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Cluster Resources</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091445Z" changeid="ikedaj">
+        <seg>［参考］ ［参考］ Cluster Nodes</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Configuration Basics</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091443Z" changeid="ikedaj">
+        <seg>［参考］ Configuration Explained</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Configuration Explained</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091438Z" changeid="ikedaj">
+        <seg>Configuration Explained</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Debugging Cluster Startup</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091432Z" changeid="ikedaj">
+        <seg>Debugging Cluster Startup</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>FAQ</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091433Z" changeid="ikedaj">
+        <seg>FAQ</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Installation</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091433Z" changeid="ikedaj">
+        <seg>Installation</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Is This init Script LSB Compatible?</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091434Z" changeid="ikedaj">
+        <seg>Is This init Script LSB Compatible?</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>More About OCF Resource Agents</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091435Z" changeid="ikedaj">
+        <seg>More About OCF Resource Agents</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Preface</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091448Z" changeid="ikedaj">
+        <seg>Preface</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Protecting Your Data - STONITH</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091447Z" changeid="ikedaj">
+        <seg>Protecting Your Data - STONITH</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Read-Me-First</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091444Z" changeid="ikedaj">
+        <seg>Read-Me-First</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Receiving Notification of Cluster Events</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091448Z" changeid="ikedaj">
+        <seg>Receiving Notification of Cluster Events</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Resource Constraints</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091443Z" changeid="ikedaj">
+        <seg>Resource Constraints</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Rules</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091446Z" changeid="ikedaj">
+        <seg>Rules</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Sample Configurations</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091435Z" changeid="ikedaj">
+        <seg>Sample Configurations</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Status - Here be dragons</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091446Z" changeid="ikedaj">
+        <seg>Status - Here be dragons</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Upgrading Cluster Software</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091436Z" changeid="ikedaj">
+        <seg>Upgrading Cluster Software</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>Upgrading the Configuration from 0.6</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091437Z" changeid="ikedaj">
+        <seg>Upgrading the Configuration from 0.6</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>What Changed in 1.0</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T091431Z" changeid="ikedaj">
+        <seg>What Changed in 1.0</seg>
+      </tuv>
+    </tu>
+  </body>
+</tmx>
