@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tmx SYSTEM "tmx11.dtd">
+<tmx version="1.1">
+  <header
+    creationtool="OmegaT"
+    creationtoolversion="2.3.0_5"
+    segtype="sentence"
+    o-tmf="OmegaT TMX"
+    adminlang="EN-US"
+    srclang="EN-US"
+    datatype="plaintext"
+  >
+  </header>
+  <body>
+    <tu>
+      <tuv lang="EN-US">
+        <seg>CRM CLI (command line interface) tool
+======================================
+Dejan_Muhamedagic,_Yan_Gao dejan@suse.de,ygao@novell.com
+v0.94, Februar 18, 2010:</seg>
+      </tuv>
+      <tuv lang="JA" changedate="20120124T090356Z" changeid="ikedaj">
+        <seg>CRM CLI (command line interface) tool
+======================================
+Dejan_Muhamedagic,_Yan_Gao dejan@suse.de,ygao@novell.com
+v0.94, Februar 18, 2010:</seg>
+      </tuv>
+    </tu>
+  </body>
+</tmx>
