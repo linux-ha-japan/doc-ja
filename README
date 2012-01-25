@@ -1,0 +1,11 @@
+Linux-HA関連のドキュメントを管理するリポジトリです。
+
+ディレクトリ構成(2012年1月25日)
+
+- pacemaker-1.0-crm-cli(CRM CLIの翻訳)
+ - omegat	OmegaT用ファイル
+ - asciidoc	asciidocで変換したファイル(予定)
+
+- pacemaker-1.0-Pacemaker_Explained(Pacemaker_Explainedの翻訳)
+ - omegat	OmegaT用ファイル
+ - publican	publicanで変換したファイル(予定)
