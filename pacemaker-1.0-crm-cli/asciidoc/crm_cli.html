@@ -1,0 +1,1828 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 8.4.5" />
+<title>CRM CLI (command line interface) tool</title>
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+span#email {
+}
+span#revnumber, span#revdate, span#revremark {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock {
+  padding-left: 2.0em;
+  margin-right: 10%;
+}
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock {
+  padding-left: 2.0em;
+  margin-right: 10%;
+}
+div.verseblock > div.content {
+  white-space: pre;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+
+div#toctitle {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock-content {
+  white-space: pre;
+}
+div.verseblock-attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+
+/* IE6 sets dynamically generated links as visited. */
+div#toc a:visited { color: blue; }
+</style>
+</head>
+<body>
+<div id="header">
+<h1>CRM CLI (command line interface) tool</h1>
+<span id="author">Dejan Muhamedagic, Yan Gao dejan@suse.de,ygao@novell.com</span><br />
+<span id="revnumber">version 0.94,</span>
+<span id="revdate">Februar 18, 2010</span>
+<br /><span id="revremark"></span>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph"><p>CRM(Cluster Resource Manager, 別名 Pacemaker)はクラスタマネージャです。CRMはCIB(Cluster Information Base)に保存された情報をもとにクラスタを管理します。CIBはXML形式で記述されています。CIBは構文が複雑なので、CIBの情報を変更する手順はかなり煩雑です。</p></div>
+<div class="sidebarblock">
+<div class="sidebar-content">
+<div class="sidebar-title">備考</div>
+<div class="paragraph"><p>XMLの扱いに慣れたユーザであれば、CIBの編集はそれほど難しくないかもしれませんが、クラスタの構成が複雑になればなるほどCIBも複雑になります。</p></div>
+</div></div>
+<div class="paragraph"><p>現在、CIBを編集するために下記のツールが提供されています。</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+GUI
+</p>
+</li>
+<li>
+<p>
+コマンドラインツール(`crm_resource`など)
+</p>
+</li>
+<li>
+<p>
+<tt>cibadminコマンド</tt>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>GUIは特に人気のあるツールで、現在も改良が続けられています。(訳者注：2012年1月時点において三種類のGUIが提供されています。Python GUI, LCMC, Hawk)初めてクラスタを管理する場合はまずGUIを試してみるとよいでしょう。</p></div>
+<div class="paragraph"><p>Pacemakerには`crm_resource`コマンドをはじめとするコマンドラインツールが付属しており、これらを利用してCIBを編集することもできます。しかし、コマンドラインツールはオプションの種類が多く操作も複雑であるため、習熟に時間がかかるという欠点があります。また、コマンドラインツール間でプションが統一されていないものもあり、ユーザが混乱する原因になっています。(訳者注：Pacemaker 1.0.10以降では、オプションの統一が進んでいます。)</p></div>
+<div class="paragraph"><p>コマンドラインツールの一つである`cibadmin`コマンドは優れた管理ツールです。ユーザはCIB全体ではなく、CIBの一部のみを取り出して編集することができます。しかし、`cibadmin`コマンドは操作が難しいため、かなり経験を積んだユーザにしか使いこなせないかもしれません。何度も操作を試してみて慣れていくしかありませんが、コマンドの出力するエラーメッセージがわかりづらいため、難易度は高いといえます。</p></div>
+</div>
+</div>
+<h2 id="_crm_cli">CRM-CLIの開発目標</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>CRM-CLIは、CIBの編集およびクラスタの管理を行うためのツールです。CRM-CLIは内部で`cibadmin`コマンドのようなコマンドラインツールを呼び出しており、コマンドラインツールを通してXMLの編集が実行されます。それぞれのコマンドラインツールから実行された結果は互換性を保持しています。</p></div>
+<div class="paragraph"><p>CRM-CLIは、対話式の操作だけではなくバッチ入力方式にも対応しています。標準入力から一連のコマンドを連続して実行することも可能であり、操作をスクリプト化することもできます。クラスタの設定や管理に慣れていないユーザのために、テンプレートも用意されています。</p></div>
+<div class="paragraph"><p>CRM-CLIを操作することによって、CIBそのものを生成することもできます。CRM-CLIのコマンドを記述したスクリプトはXML形式ではありませんが、CIBに反映することが可能です。</p></div>
+<div class="paragraph"><p>最近追加された新しい機能として、シャドウCIBがあります。ユーザは複数のシャドウCIBを作成し、そのうちの一つをクラスタへ反映することができます。
+XML形式の設定を直接編集し、ファイルまたはネットワーク経由でクラスタへ反映することも可能です。</p></div>
+<div class="paragraph"><p>ユーザの習熟度に応じて使用可能な機能を限定することもできます。</p></div>
+<div class="paragraph"><p>CRM-CLIのコマンドは、基本的には、改行を含めずに実行してください。コマンドに複数のオプションを追加して文字列が長くなってしまった場合は、継続文字(<tt>\</tt>)を使用して改行することもできます。</p></div>
+<div class="paragraph"><p>CRM-CLIはクラスタ内のノードで実行してください。</p></div>
+<div class="sidebarblock">
+<div class="sidebar-content">
+<div class="sidebar-title">備考</div>
+<div class="paragraph"><p>クラスタの管理は全てCRM-CLIで実行可能となるように開発が続けられていますが、特定のXMLに関してはまだ対応できていない箇所もあります。不具合を見つけたらバグレポートを提出してください。</p></div>
+<div class="paragraph"><p>CRM-CLIによる操作が失敗した場合、操作内容はCIBには反映されません。CRM-CLIを使わずに直接XMLを編集してCIBを変更することも当然可能ですが、この場合誤った情報がCIBに反映されてしまう可能性もあります。</p></div>
+</div></div>
+</div>
+<h2 id="_">ユーザインターフェースの概要</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>このツールも最も重要な部分はユーザインターフェースです。この章では形式ばったチュートリアルではなく感覚的に理解できるような例をいくつか紹介します。では、いくつかの例を紹介しましょう。</p></div>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+コマンドラインモード
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt># crm resource stop www_app</tt></pre>
+</div></div>
+</li>
+<li>
+<p>
+対話式モード
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt># crm
+crm(live)# resource
+crm(live) resource# unmanage tetris_1
+crm(live) resource# up
+crm(live)# node standby node4</tt></pre>
+</div></div>
+</li>
+<li>
+<p>
+バッチ入力モード
+</p>
+<div class="literalblock">
+<div class="content">
+<pre><tt># crm&lt;&lt;EOF
+configure
+  erase
+  #
+  # resources
+  #
+  primitive disk0 iscsi \
+    params portal=192.168.2.108:3260 target=iqn.2008-07.com.suse:disk0
+  primitive fs0 Filesystem \
+    params device=/dev/disk/by-label/disk0 directory=/disk0 fstype=ext3
+  primitive internal_ip IPaddr params ip=192.168.1.101
+  primitive apache apache \
+    params configfile=/disk0/etc/apache2/site0.conf
+  primitive apcfence stonith:apcsmart \
+    params ttydev=/dev/ttyS0 hostlist="node1 node2" \
+    op start timeout=60s
+  primitive pingd pingd \
+    params name=pingd dampen=5s multiplier=100 host_list="r1 r2"
+  #
+  # monitor apache and the UPS
+  #
+  monitor apache 60s:30s
+  monitor apcfence 120m:60s
+  #
+  # cluster layout
+  #
+  group internal_www \
+    disk0 fs0 internal_ip apache
+  clone fence apcfence \
+    meta globally-unique=false clone-max=2 clone-node-max=1
+  clone conn pingd \
+    meta globally-unique=false clone-max=2 clone-node-max=1
+  location node_pref internal_www \
+    rule 50: #uname eq node1 \
+    rule pingd: defined pingd
+  #
+  # cluster properties
+  #
+  property stonith-enabled=true
+  commit
+EOF</tt></pre>
+</div></div>
+</li>
+</ol></div>
+<div class="paragraph"><p>CRM-CLIを使ったことがなくても、上記の例は直感的に理解することができるのではないでしょうか。CRM-CLIによって、クラスタを効率的に管理し、容易に設定を変更することができます。</p></div>
+<div class="paragraph"><p>コマンドプロンプトに表示される`(live)`という文字列は、操作対象のCIBが実行中のクラスタ(ライブCIB)であることを表しています。ライブCIBではなくシャドウCIBに対して操作を実行することもできます。シャドウCIBとはライブCIBのコピーと考えてよいでしょう。シャドウCIBに対する操作はライブCIBには反映されません。</p></div>
+<div class="paragraph"><p>CIBはXMLの階層構造を保持しており、CRM-CLIは、XMLの階層ごとに特定のコマンドを使用します。</p></div>
+<h3 id="_cib">シャドウCIBの使用方法</h3><div style="clear:left"></div>
+<div class="paragraph"><p>シャドウCIBは新しく追加された機能です。シャドウCIBはライブCIBと同様の操作が可能ですが、シャドウCIBに対する設定変更はクラスタには反映されません。管理者は複数のシャドウCIBを作成し、そのうちの一つだけをクラスタに反映することができます。シャドウCIBの操作中は、コマンドプロンプトには現在操作を実行中のシャドウCIBの名前が表示されます。シャドウCIBでは、`configure`レベルのコマンドのみ使用可能です。</p></div>
+<div class="paragraph"><p>`configure commit`コマンドを実行してはじめて、シャドウCIBの変更がクラスタ(ライブCIB)に反映されます。クラスタを設定する際、最初はライブCIBを直接編集することが多いかもしれませんが、慣れてきたらまずシャドウCIBで設定を変更し、設定内容が間違っていないことを確認してからクラスタに反映するとよいでしょう。`configure`レベルでの操作例</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>    crm(live)configure# cib new test-2
+    INFO: test-2 shadow CIB created
+    crm(test-2)configure# commit</tt></pre>
+</div></div>
+<h3 id="__2">テンプレート</h3><div style="clear:left"></div>
+<div class="paragraph"><p>CRM-CLIには、クラスタを設定するための基本的なテンプレートがいくつが用意されています。ユーザはテンプレートを利用することによって、複雑な操作を行わずにクラスタを設定することができます。Pacemakerをはじめて使用する場合は、まずテンプレートを利用してクラスタを設定してみましょう。</p></div>
+<div class="paragraph"><p>Apacheのテンプレートを利用した設定例</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>    # crm configure
+    crm(live)configure# template
+    crm(live)configure template# list templates
+    apache       filesystem   virtual-ip
+    crm(live)configure template# new web &lt;TAB&gt;&lt;TAB&gt;
+    apache       filesystem   virtual-ip
+    crm(live)configure template# new web apache
+    INFO: pulling in template apache
+    INFO: pulling in template virtual-ip
+    crm(live)configure template# list
+    web2-d       web2         vip2         web3         vip          web</tt></pre>
+</div></div>
+<div class="paragraph"><p>最初に`configure`レベルに移動して`template`コマンドを実行してください。`list templates`コマンドを実行すると、利用可能なテンプレートの一覧が表示されます。`new`コマンドを実行して、Apacheの設定を作成します。タブキーによる入力補完も使用することができます。Apacheを実行するためには仮想IPも必要となります。テンプレートを使用してApacheの設定を作成すると自動的に仮想IPの設定も作成されます。ここで`list`コマンドを実行すると、先ほど作成した「web」という名前の設定(Apache, 仮想IP)が表示されます。上記の例ではweb以外の設定も表示されていますが、これらは別の機会に作成した設定です。</p></div>
+<div class="paragraph"><p>`show`コマンドを実行すると、設定内容が表示されます。ユーザがそれぞれの環境にあわせて設定を変更する必要のあるパラメータは、エラーメッセージが表示されます。エラーメッセージの表示されたパラメータには、ユーザが値を入力する必要があります。</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>    crm(live)configure template# show
+    ERROR: 23: required parameter ip not set
+    ERROR: 61: required parameter id not set
+    ERROR: 65: required parameter configfile not set
+    crm(live)configure template# edit</tt></pre>
+</div></div>
+<div class="paragraph"><p><tt>edit`コマンドを実行するとテキストエディタが起動します。エディタを使用して先ほどの設定(設定名 web)を手動で編集しましょう。ファイルの先頭に、変更が必要な項目が表示されます。よく作りこまれたテンプレートの場合、ユーザはいくつかのパラメータ値を入力するだけでクラスタの設定を行うことができます。先ほどの設定(設定名 web)の場合、変更する必要のあるパラメータの接頭辞に `%%</tt> が追加されています。</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>    $ grep -n ^%% ~/.crmconf/web
+    23:%% ip
+    31:%% netmask
+    35:%% lvs_support
+    61:%% id
+    65:%% configfile
+    71:%% options
+    76:%% envfiles</tt></pre>
+</div></div>
+<div class="paragraph"><p>上記のパラメータはユーザの環境にあわせて変更する必要があります。各行の最後尾にパラメータ値を追記してください。編集しおわった設定を再度検索すると、下記の様な表示が得られるでしょう。netmask, lvs_support, opsions, envfiles は必須パラメータではないので、空欄でもかまいません。</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>    $ grep -n ^%% ~/.crmconf/web
+    23:%% ip                192.168.1.101
+    31:%% netmask
+    35:%% lvs_support
+    61:%% id                websvc
+    65:%% configfile        /etc/apache2/httpd.conf
+    71:%% options
+    76:%% envfiles</tt></pre>
+</div></div>
+<div class="paragraph"><p>パラメータの設定方法は非常に単純です。パラメータの名前と値をスペースで区切って定義してください。</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>    %% &lt;name&gt; &lt;value&gt;</tt></pre>
+</div></div>
+<div class="paragraph"><p>`edit`コマンドで設定を編集した後、`show`コマンドで設定内容を確認してください。</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>    crm(live)configure template# show
+    primitive virtual-ip ocf:heartbeat:IPaddr \
+            params ip="192.168.1.101"
+    primitive apache ocf:heartbeat:apache \
+            params configfile="/etc/apache2/httpd.conf"
+    monitor apache 120s:60s
+    group websvc \
+            apache virtual-ip</tt></pre>
+</div></div>
+<div class="paragraph"><p>上記の手順で、Apacheと仮想IPを設定したgroupリソースを作成することができました。groupリソースの名前は`websvc`です。</p></div>
+<div class="paragraph"><p>`configure`レベルで`show`コマンドを実行して表示された設定内容がテンプレートとして提供されていた内容に加えて、ユーザ環境に依存するパラメータ値が正しく追加されていることを確認してください。上記の手順は基本的な設定手順となりますので、よく理解しておいてください。</p></div>
+<div class="paragraph"><p>では、いよいよ、設定した内容を適用させます。適用した内容は`template`レベルよりも一つ上の階層である`configure`レベルで確認することができます。</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>    crm(live)configure template# apply
+    crm(live)configure template# cd ..
+    crm(live)configure# show
+    node xen-b
+    node xen-c
+    primitive apache ocf:heartbeat:apache \
+        params configfile="/etc/apache2/httpd.conf" \
+        op monitor interval="120s" timeout="60s"
+    primitive virtual-ip ocf:heartbeat:IPaddr \
+        params ip="192.168.1.101"
+    group websvc apache virtual-ip</tt></pre>
+</div></div>
+<div class="paragraph"><p>ここで中止しなくてはならないのは、`apply`コマンドを実行した時点では、まだクラスタに設定が反映されていないということです。これはライブCIBを直接編集する場合だけではなくシャドウCIBを操作する場合も同じです。設定内容をクラスタに反映するためには`commit`コマンドを実行する必要があります。</p></div>
+<div class="paragraph"><p>次に、リソースが配置制約を設定します。配置制約は、クラスタの初期起動時に、どのノードでリソースが起動するかを定義することができます。</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>    crm(live)configure# location websvc-pref websvc 100: xen-b</tt></pre>
+</div></div>
+<div class="paragraph"><p>If you are not happy with some resource names which are provided
+by default, you can rename them now:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>    crm(live)configure# rename virtual-ip intranet-ip
+    crm(live)configure# show
+    node xen-b
+    node xen-c
+    primitive apache ocf:heartbeat:apache \
+            params configfile="/etc/apache2/httpd.conf" \
+            op monitor interval="120s" timeout="60s"
+    primitive intranet-ip ocf:heartbeat:IPaddr \
+            params ip="192.168.1.101"
+    group websvc apache intranet-ip
+    location websvc-pref websvc 100: xen-b</tt></pre>
+</div></div>
+<div class="paragraph"><p>これまでの手順をおさらいしてみましょう。クラスタの設定を行うためには次の手順が必要です。</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<tt>new</tt>: 新しいテンプレートを作成します。
+</p>
+</li>
+<li>
+<p>
+<tt>edit</tt>: ユーザの環境に合わせてパラメータ値を設定します。
+</p>
+</li>
+<li>
+<p>
+<tt>show</tt>: 設定内容を確認します。
+</p>
+</li>
+<li>
+<p>
+<tt>apply</tt>: `configure`レベルで、設定内容を適用します(まだクラスらには反映されていません)。
+</p>
+</li>
+</ul></div>
+<h3 id="__3">タブキーによる入力補完について</h3><div style="clear:left"></div>
+<div class="paragraph"><p>CRM-CLIはタブキーによる入力補完が可能です。入力補完は静的にも動的にも実行可能です。後者はクラスらの状態やリソースエージェントの情報を取得するために必要となります。入力補完はコマンドのヘルプ表示やリソースに必要なパラメータを表示するためにも使用することができます。実行例</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>    crm(live)# resource &lt;TAB&gt;&lt;TAB&gt;
+    bye         exit        manage      param       show        unmanage
+    cd          failcount   meta        quit        start       unmigrate
+    cleanup     help        migrate     refresh     status      unmove
+    end         list        move        reprobe     stop        up
+    crm(live)# configure
+    crm(live)configure# primitive fence-1 &lt;TAB&gt;&lt;TAB&gt;
+    heartbeat:  lsb:        ocf:        stonith:
+    crm(live)configure# primitive fence-1 stonith:ipmilan params &lt;TAB&gt;&lt;TAB&gt;
+    auth=      hostname=  ipaddr=    login=     password=  port=      priv=
+    crm(live)configure# primitive fence-1 stonith:ipmilan params auth=&lt;TAB&gt;&lt;TAB&gt;
+    auth* (string)
+        The authorization type of the IPMI session ("none", "straight", "md2", or "md5")
+    crm(live)configure# primitive fence-1 stonith:ipmilan params auth=</tt></pre>
+</div></div>
+<h3 id="SEMCHK">構文チェック</h3><div style="clear:left"></div>
+<div class="paragraph"><p>リソースの定義については、リソースエージェントのmeta-dataに基づいて構文チェックが実行されます。例えば、次のようなチェックが実行されます。</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+必要なパラメータが設定されているか
+</p>
+</li>
+<li>
+<p>
+定義されたパラメータが存在しているか
+</p>
+</li>
+<li>
+<p>
+リソースの各オペレーション(start/stop/monitor/promote/demote)にタイムアウト値は設定されているか
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>パラメータ値のチェックは一般的なものなので、特に説明する必要はないでしょう。構文チェックでエラーとなった項目は、設定時にもエラーが出力されます。</p></div>
+<div class="paragraph"><p>オペレーションのタイムアウト値は、meta-dataに記述された推奨値よりも大きな値を設定したほうがよいでしょう。パラメータ値が小さいために発生する不具合はよくある設定ミスの一つですが、タイムアウト値が小さすぎる場合でもクラスは正常に起動するため、不具合発生時の原因解析が困難になる場合はあります。オペレーションに設定されたタイムアウト値が小さいと、クラスタはリソースの起動時に警告(warning)を出力します。警告が出力された場合はタイムアウト値を再検討してください。meta-dataで推奨されている場合はあくまで最小のタイムアウト値です。特定の環境によってはさらに大きな値が必要となる場合もありますので注意してください。</p></div>
+<div class="paragraph"><p>構文チェックが実行される頻度は<a href="#cmdhelp_options_check-frequency"><tt>check-frequency</tt></a>と
+<a href="#cmdhelp_options_check-mode"><tt>check-mode</tt></a>で定義されています。</p></div>
+<div class="paragraph"><p>`check-frequency`が`always`に設定されており、かつ`check-mode`が`strict`に設定されている場合、エラーは決して許容されないため、エラーを含む設定内容はクラスタに反映されません。</p></div>
+</div>
+<h2 id="__4">コマンドリファレンス</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>CRM-CLIによるクラスタの設定手順は非常にシンプルです。クラスタを管理するコマンドを実行する際、いくつかのオプションが必要となる場合もありますが、オプションはそれほど複雑ではありません。`configure`レベルで使用するコマンドに関しては複雑なオプションもいくつか存在しますが、その他のコマンドは総じて直感的に操作することができるでしょう。</p></div>
+<div class="paragraph"><p>コマンドの構文例:
+<tt>&lt;&gt;</tt> 文字列を表します。
+<tt>[]</tt> 省略可能であることを意味します。
+(<tt>...</tt>) 繰り返しを意味します。
+<tt>|</tt> 多数の項目からある一項目を選択します。
+(strings, <tt>:</tt>, <tt>=</tt>) その他の構文要素です。</p></div>
+<h3 id="_tt_status_tt"><tt>status</tt></h3><div style="clear:left"></div>
+<div class="paragraph"><p>statusコマンドはクラスタの状態を表示します。`crm_mon`コマンドで表示される内容とほぼ同じものです。引数を追加すると、詳細情報の表示や異なるフォーマットでの表示も可能です。詳細は`crm_mon`コマンドのmanを参照してください。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        status [&lt;option&gt; ...]
+
+        option :: bynode | inactive | ops | timing | failcounts</tt></pre>
+</div></div>
+<h3 id="cmdhelp_cib"><tt>cib</tt> (shadow CIBs)</h3><div style="clear:left"></div>
+<div class="paragraph"><p>cibコマンドはシャドウCIBの管理を行います。cibコマンドはCRM-CLIのトップレベルとconfigureレベルでのみ実行可能です。</p></div>
+<div class="paragraph"><p>実行時に<tt>cib_shadow</tt> コマンドを呼び出しているため、環境変数`CIB_shadow`が必要となります。CRM-CLIを実行中、プロンプトにはシャドウCIBもしくはライブCIBの名前が表示されます。</p></div>
+<h4 id="cmdhelp_cib_new"><tt>new</tt></h4>
+<div class="paragraph"><p>newコマンドは新しいシャドウCIBを作成します。newコマンドを実行するとライブCIBがシャドウCIBにコピーされます。シャドウCIBのstatusセクションを編集する場合は、`withstatus`を指定してください。詳細は<a href="#cmdhelp_cibstatus">cibstatus section</a>を参照してください。ライブCIBを既存のシャドウCIBに強制的に上書きする場合は、`force`オプションを追加してください。</p></div>
+<div class="paragraph"><p>シャドウCIBをライブCIBからではなく、全く空の状態亜kら作成する場合は、`empty`を指定してください。シャドウCIBはライブCIBが存在していない状態、つまりクラスタが起動していない状態でも作成することができます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        new &lt;cib&gt; [withstatus] [force] [empty]</tt></pre>
+</div></div>
+<h4 id="cmdhelp_cib_delete"><tt>delete</tt></h4>
+<div class="paragraph"><p>deleteコマンドはシャドウCIBを削除します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        delete &lt;cib&gt;</tt></pre>
+</div></div>
+<h4 id="cmdhelp_cib_reset"><tt>reset</tt></h4>
+<div class="paragraph"><p>resetコマンドはシャドウCIBにライブCIBを上書きします。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        reset &lt;cib&gt;</tt></pre>
+</div></div>
+<h4 id="cmdhelp_cib_commit"><tt>commit</tt></h4>
+<div class="paragraph"><p>Apply a shadow CIB to the cluster.</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        commit &lt;cib&gt;</tt></pre>
+</div></div>
+<h4 id="cmdhelp_cib_use"><tt>use</tt></h4>
+<div class="paragraph"><p>複数のシャドウCIBが存在する場合、編集対象のシャドウCIBをuseコマンドで選択することができます。シャドウCIBのstatusセクションを編集する場合は、`withstatus`を指定してください。詳細は<a href="#cmdhelp_cibstatus">cibstatus section</a>を参照してください。シャドウCIBが複数存在している場合、useコマンドを使用して編集中に別のシャドウCIBを選択することもできますし、ライブCIBを選択することもできます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        use [&lt;cib&gt;] [withstatus]</tt></pre>
+</div></div>
+<h4 id="cmdhelp_cib_diff"><tt>diff</tt></h4>
+<div class="paragraph"><p>diffコマンドは現在実行されているクラスタの設定とシャドウCIBの差分を表示します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        diff</tt></pre>
+</div></div>
+<h4 id="cmdhelp_cib_list"><tt>list</tt></h4>
+<div class="paragraph"><p>listコマンドはシャドウCIBの一覧を表示します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        list</tt></pre>
+</div></div>
+<h4 id="cmdhelp_cib_import"><tt>import</tt></h4>
+<div class="paragraph"><p>importコマンドはファイルに保存されたCIBの情報をシャドウCIBに取り込みます。CIBの情報はPE(Policy Engine)からファイルに出力されています。importコマンドは、まずプログラムが実行されたローカルファイルを参照した後、/var/lib/pengineを検索します。ファイルのフルパスを指定することも可能です。CIBの情報が保存されたファイルが見つかると、シャドウCIBにファイルの内容がコピーされます。このシャドウCIBは`configure`レベルと`cibstatus`レベルで編集可能となります。</p></div>
+<div class="paragraph"><p>importコマンドの引数としてシャドウCIBの名前が省略された場合は、取り込まれたファイル名がシャドウCIBの名前となります。</p></div>
+<div class="paragraph"><p>PEファイルは複数出力されていることが多いので、ファイル名をしている際は注意してください。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        import {&lt;file&gt;|&lt;number&gt;} [&lt;shadow&gt;]</tt></pre>
+</div></div>
+<div class="paragraph"><p>Examples:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        import pe-warn-2222
+        import 2289 issue2</tt></pre>
+</div></div>
+<h4 id="cmdhelp_cib_cibstatus"><tt>cibstatus</tt></h4>
+<div class="paragraph"><p>cibstatusコマンドはCIBのstatsuセクションを編集、管理します。詳細は<a href="#cmdhelp_cibstatus">CIB status management section</a>を参照してください。</p></div>
+<h3 id="cmdhelp_ra"><tt>ra</tt></h3><div style="clear:left"></div>
+<div class="paragraph"><p>raコマンドはリソースエージェントに関連する情報を表示します。raコマンドはCRM-CLIのトップレベルとconfigureレベルでのみ実行可能です。</p></div>
+<h4 id="cmdhelp_ra_classes"><tt>classes</tt></h4>
+<div class="paragraph"><p>classコマンドはリソースエージェントのclassおよびproviderを表示します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        classes</tt></pre>
+</div></div>
+<h4 id="cmdhelp_ra_list"><tt>list</tt></h4>
+<div class="paragraph"><p>listコマンドは利用可能なリソースエージェントを表示します。classパラメータに`ocf`を指定した場合、利用可能なOCF RAを表示します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        list &lt;class&gt; [&lt;provider&gt;]</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        list ocf pacemaker</tt></pre>
+</div></div>
+<h4 id="cmdhelp_ra_meta"><tt>meta</tt> (<tt>info</tt>)</h4>
+<div class="paragraph"><p>metaコマンドはリソースエージェントのmeta-dataを表示します。meta-dataにはリソースエージェントの使用方法などが記述されています。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        meta [&lt;class&gt;:[&lt;provider&gt;:]]&lt;type&gt;
+        meta &lt;type&gt; &lt;class&gt; [&lt;provider&gt;] (obsolete)</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        meta apache
+        meta ocf:pacemaker:Dummy
+        meta stonith:ipmilan</tt></pre>
+</div></div>
+<h4 id="cmdhelp_ra_providers"><tt>providers</tt></h4>
+<div class="paragraph"><p>providerコマンドはリソースエージェントのproviderを表示します。デフォルトのclassは`ocf`です。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        providers &lt;type&gt; [&lt;class&gt;]</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        providers apache</tt></pre>
+</div></div>
+<h3 id="cmdhelp_resource"><tt>resource</tt></h3><div style="clear:left"></div>
+<div class="paragraph"><p>resourceコマンドを使用してリソースを管理することができます。</p></div>
+<div class="paragraph"><p>resourceコマンドによる操作は、`crm_resource`コマンドなどでも代替可能です。</p></div>
+<h4 id="cmdhelp_resource_status"><tt>status</tt> (<tt>show</tt>, <tt>list</tt>)</h4>
+<div class="paragraph"><p>statusコマンドはリソースの状態を表示します。引数が省略された場合、すべてのリソースの状態が表示されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        status [&lt;rsc&gt;]</tt></pre>
+</div></div>
+<h4 id="cmdhelp_resource_start"><tt>start</tt></h4>
+<div class="paragraph"><p>startコマンドはリソースを起動します。startコマンドを実行すると`target-role`属性が設定されます。複数のmeta属性が存在する場合は、すべての属性が設定されます。リソースがgroupリソース、またはcloneリソースの場合、子リソースから`target-role`属性が削除されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        start &lt;rsc&gt;</tt></pre>
+</div></div>
+<h4 id="cmdhelp_resource_stop"><tt>stop</tt></h4>
+<div class="paragraph"><p>stopコマンドはリソースを停止します。stopコマンドを実行すると`target-role`属性が設定されます。複数のmeta属性が存在する場合は、すべての属性が設定されます。リソースがgroupリソース、またはcloneリソースの場合、子リソースから`target-role`属性が削除されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        stop &lt;rsc&gt;</tt></pre>
+</div></div>
+<h4 id="cmdhelp_resource_restart"><tt>restart</tt></h4>
+<div class="paragraph"><p>restartコマンドはリソースを再起動します。このコマンドは、startコマンドをstopコマンドを連続して実行します。リソースが完全に停止するまでコマンドは待機状態となります。すべてのリソースが停止した後に起動処理が実行されます。このコマンドが複数の操作を実行するため、実行中にメッセージが出力されることがあります。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        restart &lt;rsc&gt;</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        # crm resource restart g_webserver
+        INFO: ordering g_webserver to stop
+        waiting for stop to finish .... done
+        INFO: ordering g_webserver to start
+        #</tt></pre>
+</div></div>
+<h4 id="cmdhelp_resource_promote"><tt>promote</tt></h4>
+<div class="paragraph"><p>promoteコマンドはリソースをスレーブ状態からマスター状態へプロモート(昇格)します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        promote &lt;rsc&gt;</tt></pre>
+</div></div>
+<h4 id="cmdhelp_resource_demote"><tt>demote</tt></h4>
+<div class="paragraph"><p>demoteコマンドはリソースをマスター状態からスレーブ状態へデモート(降格)します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        demote &lt;rsc&gt;</tt></pre>
+</div></div>
+<h4 id="cmdhelp_resource_manage"><tt>manage</tt></h4>
+<div class="paragraph"><p>manageコマンドはリソースを管理対象とみなします。manageコマンドを実行すると`target-role`属性が設定されます。複数のmeta属性が存在する場合は、すべての属性が設定されます。リソースがgroupリソース、またはcloneリソースの場合、子リソースから`target-role`属性が削除されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        manage &lt;rsc&gt;</tt></pre>
+</div></div>
+<h4 id="cmdhelp_resource_unmanage"><tt>unmanage</tt></h4>
+<div class="paragraph"><p>unmanageコマンドはリソースを管理対象外とします。unmanageコマンドを実行すると`target-role`属性が設定されます。複数のmeta属性が存在する場合は、すべての属性が設定されます。リソースがgroupリソース、またはcloneリソースの場合、子リソースから`target-role`属性が削除されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        unmanage &lt;rsc&gt;</tt></pre>
+</div></div>
+<h4 id="cmdhelp_resource_migrate"><tt>migrate</tt> (<tt>move</tt>)</h4>
+<div class="paragraph"><p>migrate(move)コマンドはリソースを他のノードへ移動させます。移動先のノードは引数に指定する必要がありますが、この引数が省略された場合は、リソースが現在起動しているノードに対する制約が変更されます。つまり、リソースが現行ノードで起動不可となる制約が追加されるため、リソースは他ノードへ移動することになります。制約にはlifetimeオプションを追加することも可能です。lifetimeが失効すると、現行ノードに追加された制約は無効となります。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        migrate &lt;rsc&gt; [&lt;node&gt;] [&lt;lifetime&gt;] [force]</tt></pre>
+</div></div>
+<h4 id="cmdhelp_resource_unmigrate"><tt>unmigrate</tt> (<tt>unmove</tt>)</h4>
+<div class="paragraph"><p>unmigrateコマンドはmigrateコマンドで作成された制約を削除します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        unmigrate &lt;rsc&gt;</tt></pre>
+</div></div>
+<h4 id="cmdhelp_resource_param"><tt>param</tt></h4>
+<div class="paragraph"><p>paramコマンドはリソースのパラメータを表示、編集、削除します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        param &lt;rsc&gt; set &lt;param&gt; &lt;value&gt;
+        param &lt;rsc&gt; delete &lt;param&gt;
+        param &lt;rsc&gt; show &lt;param&gt;</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        param ip_0 show ip</tt></pre>
+</div></div>
+<h4 id="cmdhelp_resource_meta"><tt>meta</tt></h4>
+<div class="paragraph"><p>metaコマンドはリソースのmeta属性を表示、編集、削除します。現在、全てのリソースのmeta属性は、metaコマンド以外、例えば resource stop などでも操作可能となっています。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        meta &lt;rsc&gt; set &lt;attr&gt; &lt;value&gt;
+        meta &lt;rsc&gt; delete &lt;attr&gt;
+        meta &lt;rsc&gt; show &lt;attr&gt;</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        meta ip_0 set target-role stopped</tt></pre>
+</div></div>
+<h4 id="cmdhelp_resource_failcount"><tt>failcount</tt></h4>
+<div class="paragraph"><p>failcountコマンドはリソースのフェイルカウントを表示、編集、削除します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        failcount &lt;rsc&gt; set &lt;node&gt; &lt;value&gt;
+        failcount &lt;rsc&gt; delete &lt;node&gt;
+        failcount &lt;rsc&gt; show &lt;node&gt;</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        failcount fs_0 delete node2</tt></pre>
+</div></div>
+<h4 id="cmdhelp_resource_cleanup"><tt>cleanup</tt></h4>
+<div class="paragraph"><p>cleanupコマンドはリソースの故障履歴(フェイルカウントを含む)を削除します。このコマンドはリソースの故障が発生した後に、リソースの故障履歴を削除するために使用します。ノードを指定する引数を省略した場合、すべてのノードで故障履歴の削除が実行されます。多数のノードで構成されるクラスタの場合、コマンドの実行に時間がかかる可能性がありますので注意してください。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        cleanup &lt;rsc&gt; [&lt;node&gt;]</tt></pre>
+</div></div>
+<h4 id="cmdhelp_resource_refresh"><tt>refresh</tt></h4>
+<div class="paragraph"><p>refreshコマンドはCIBに含まれるLRMの状態を更新します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        refresh [&lt;node&gt;]</tt></pre>
+</div></div>
+<h4 id="cmdhelp_resource_reprobe"><tt>reprobe</tt></h4>
+<div class="paragraph"><p>reprobeコマンドはCRMを経由せずに起動したリソースのprobe処理を実行します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        reprobe [&lt;node&gt;]</tt></pre>
+</div></div>
+<h3 id="cmdhelp_node"><tt>node</tt></h3><div style="clear:left"></div>
+<div class="paragraph"><p>nodeコマンドはノードの管理を行います。</p></div>
+<h4 id="cmdhelp_node_status"><tt>status</tt></h4>
+<div class="paragraph"><p>statusコマンドはノードの状態を表示します。引数が省略された場合、すべてのノードの状態が表示されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        status [&lt;node&gt;]</tt></pre>
+</div></div>
+<h4 id="cmdhelp_node_show"><tt>show</tt></h4>
+<div class="paragraph"><p>showコマンドはノードの設定内容を表示します。引数が省略された場合、すべてのノードの状態が表示されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        show [&lt;node&gt;]</tt></pre>
+</div></div>
+<h4 id="cmdhelp_node_standby"><tt>standby</tt></h4>
+<div class="paragraph"><p>standbyコマンドはノードをスタンバイ化します。ノードを指定する引数が省略された場合、コマンドを実行したノードがスタンバイ化されます。lifetimeオプションにrebootを指定した場合、スタンバイ状態のノードが再起動した後、ノードはオンライン状態でクラスタに参加します。lifetimeオプションにforeverを指定した場合、スタンバイ状態のノードが再起動した後、ノードはスタンバイ状態でクラスタに参加します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        standby [&lt;node&gt;] [&lt;lifetime&gt;]
+
+        lifetime :: reboot | forever</tt></pre>
+</div></div>
+<h4 id="cmdhelp_node_online"><tt>online</tt></h4>
+<div class="paragraph"><p>onlineコマンドはノードをオンライン化します。ノードを指定する引数が省略された場合、コマンドを実行したノードがオンライン化されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        online [&lt;node&gt;]</tt></pre>
+</div></div>
+<h4 id="cmdhelp_node_fence"><tt>fence</tt></h4>
+<div class="paragraph"><p>fenceコマンドはノードをフェンス(停止)します。STONITHリソースが利用可能な場合にのみ実行されます。STONITHリソースが設定されていない場合は、フェンス処理も実行されません・</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        fence &lt;node&gt;</tt></pre>
+</div></div>
+<h4 id="cmdhelp_node_clearstate"><tt>clearnodestate</tt></h4>
+<div class="paragraph"><p>clearnodestateコマンドは特定ノードの状態を削除します。このコマンドを実行すると、ノードの故障履歴などが削除され、オフライン状態となります。ノードがフェンスされた状態を手動で再現することができます。</p></div>
+<div class="paragraph"><p>注意！clearnodestateコマンドを実行してもリソースは起動したままとなる場合があります。このとき共有ディスクの二重マウントなどを引き起こす可能性もあるので注意してください。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        clearstate &lt;node&gt;</tt></pre>
+</div></div>
+<h4 id="cmdhelp_node_delete"><tt>delete</tt></h4>
+<div class="paragraph"><p>deleteコマンドはノードの設定を削除します。このコマンドを実行すると、CIBからノードの情報が削除されます。メンバシップレイヤとしてHeartbeatを使用している場合は、内部的にhb_delnodeコマンドが実行されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        delete &lt;node&gt;</tt></pre>
+</div></div>
+<h4 id="cmdhelp_node_attribute"><tt>attribute</tt></h4>
+<div class="paragraph"><p>attributeコマンドはノードの属性を編集します。ノードに必要なメモリサイズなどを属性値として設定することができます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        attribute &lt;node&gt; set &lt;attr&gt; &lt;value&gt;
+        attribute &lt;node&gt; delete &lt;attr&gt;
+        attribute &lt;node&gt; show &lt;attr&gt;</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        attribute node_1 set memory_size 4096</tt></pre>
+</div></div>
+<h4 id="cmdhelp_node_status-attr"><tt>status-attr</tt></h4>
+<div class="paragraph"><p>status-attrコマンドはCIBに含まれるノードの属性(クラスタの実行中に変更される属性)を編集します。例えば、`pingd`リソースの属性などを編集することができます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        status-attr &lt;node&gt; set &lt;attr&gt; &lt;value&gt;
+        status-attr &lt;node&gt; delete &lt;attr&gt;
+        status-attr &lt;node&gt; show &lt;attr&gt;</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        status-attr node_1 show pingd</tt></pre>
+</div></div>
+<h3 id="cmdhelp_options"><tt>options</tt></h3><div style="clear:left"></div>
+<div class="paragraph"><p>optionsコマンドを使用して、CRM-CLIの各種オプションを設定することができます。</p></div>
+<h4 id="cmdhelp_options_skill-level"><tt>skill-level</tt></h4>
+<div class="paragraph"><p>skill-levelコマンドを使用して、各ユーザが実行可能な操作を制限することができます。ユーザの権限は、operator, administrator, expertの3種類から選択します。operatorはresourceおよびnodeコマンドを使用することができますが、リソースの編集や削除は実行できません。administratorは、operatorの権限に加えて、configureコマンドによるクラスタの設定、およびシャドウCIBの管理を実行することができます。expertはすべての操作を実行することができます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        skill-level &lt;level&gt;
+
+        level :: operator | administrator | expert</tt></pre>
+</div></div>
+<h4 id="cmdhelp_options_user"><tt>user</tt></h4>
+<div class="paragraph"><p>CRM-CLIは<tt>crm_verify</tt>, <tt>crm_resource</tt>, <tt>cibadmin</tt> などのコマンドラインツールを呼び出しているため、rootユーザやCRMのオーナ(通常はhaclusterユーザ)の権限が必要となる場合があります。rootユーザでCRM-CLIを実行している場合は、ユーザの権限について意識する必要はありません。rootユーザ以外のユーザでCRM-CLIを操作する場合は、userコマンドを使用して適切なユーザに切り替えてください。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        user system-user</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        user hacluster</tt></pre>
+</div></div>
+<h4 id="cmdhelp_options_editor"><tt>editor</tt></h4>
+<div class="paragraph"><p>editorコマンドはエディタを起動します。好みのエディタプログラムを指定することもできます。特定のエディタが設定されていない場合は、環境変数EDITORもしくは標準UNIXエディタ(vi, emacsm nano)がデフォルトで設定されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        editor program</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        editor vim</tt></pre>
+</div></div>
+<h4 id="cmdhelp_options_pager"><tt>pager</tt></h4>
+<div class="paragraph"><p>pagerコマンドはページャを起動します。 好みのページャプログラムを指定することもできます。特定のページャが設定されていない場合は、環境変数EDITORもしくは標準UNIXエディタ(less, more, pg)がデフォルトで設定されます。</p></div>
+<h4 id="cmdhelp_options_sort-elements"><tt>sort-elements</tt></h4>
+<div class="paragraph"><p>CRM-CLIのデフォルトの設定では、CIBの要素を自動的にソートして表示します。CIBの要素を作成された順序に従って表示したい場合、sort-elementsをnoに設定してください。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        sort-elements {yes|no}</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        sort-elements no</tt></pre>
+</div></div>
+<h4 id="cmdhelp_options_wait"><tt>wait</tt></h4>
+<div class="paragraph"><p>CRM-CLIのデフォルトの設定では、コマンドの実行結果を待たずにプロンプトを復帰します。waitをyesに設定すると、コマンドの実行結果を待ってからプロンプトを復帰させます。対話式モードの場合、待機時間中はプロンプトにドットが表示されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        wait {yes|no}</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        wait yes</tt></pre>
+</div></div>
+<h4 id="cmdhelp_options_output"><tt>output</tt></h4>
+<div class="paragraph"><p>CRM-CLIにはコンソールの色設定も実装されています。文字を色分けして表示する機能と、キーワードを大文字で表示する機能が利用可能です。設定可能なパラメータは、plain, color, uppercase です。colorとuppercaseは組み合わせて使用することもできます。ここでは、colorとuppercaseを設定してみましょう。</p></div>
+<h4 id="cmdhelp_options_colorscheme"><tt>colorscheme</tt></h4>
+<div class="paragraph"><p>outputoにcolorを設定します。カンマ区切り形式で複数のcolorを指定することもできます。下記の情報を出力した際に文字が色分けされます。</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+keywords
+</p>
+</li>
+<li>
+<p>
+object ids
+</p>
+</li>
+<li>
+<p>
+attribute names
+</p>
+</li>
+<li>
+<p>
+attribute values
+</p>
+</li>
+<li>
+<p>
+scores
+</p>
+</li>
+<li>
+<p>
+resource references
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>CRM-CLIの出力を色分けするためには、python-cursesがインストールされている必要があります。ターミナルで利用可能な色を設定してください。デフォルトの表示を使用する場合は、normalを指定します。</p></div>
+<div class="paragraph"><p>デフォルト値はyellow, normal, cyan, red, green, magentaです。ターミナルの背景を黒っぽい色にしておくと見やすいでしょう。色設定を保存する方法は、別の章を参考にしてください。</p></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>    colorscheme yellow,normal,blue,red,green,magenta</tt></pre>
+</div></div>
+<h4 id="cmdhelp_options_check-frequency"><tt>check-frequency</tt></h4>
+<div class="paragraph"><p>CIBの情報が変更された場合、どのタイミングでXMLの構文チェックを実行するかを設定することができます。設定値は、always, on-verify, neverのいずれかです。 check-frequencyのデフォルト値はalwayです。クラスタの管理に慣れた上級者の場合はon-verifyを設定してもよいでしょう。この場合、verifyコマンドが実行されたタイミングで構文がチェックされます。</p></div>
+<div class="paragraph"><p>構文チェックを実行するためにはリソースエージェントが指定のディレクトリに配置されている必要があります。もし、リソースエージェントがインストールされていない環境でCRM-CLIを実行する場合は、check-frequencyをneverに設定してください。</p></div>
+<div class="paragraph"><p>詳細は<a href="#SEMCHK">Configuration semantic checks</a>を参照してください。</p></div>
+<h4 id="cmdhelp_options_check-mode"><tt>check-mode</tt></h4>
+<div class="paragraph"><p>CIBの情報が変更された場合、check-modeの設定に応じて構文チェックの結果が出力されます。設定値は、strict, relaxのいずれかです。 構文チェックで誤りが発見された場合、デフォルトでは「エラー」レベルでメッセージが出力されますが、relaxedモードでは「警告」レベルで出力されます。デフォルト値はstrictです。</p></div>
+<div class="paragraph"><p>詳細は<a href="#SEMCHK">Configuration semantic checks</a>を参照してください。</p></div>
+<h4 id="cmdhelp_options_show"><tt>show</tt></h4>
+<div class="paragraph"><p>showコマンドはCRM-CLIの設定内容を表示します。</p></div>
+<h4 id="cmdhelp_options_save"><tt>save</tt></h4>
+<div class="paragraph"><p>saveコマンドはCRM-CLIの設定内容を保存します。保存先は`$HOME/.crm.rc`です。CRM-CLIの実行時に、rcファイルが自動的に読み込まれます。</p></div>
+<h3 id="cmdhelp_configure"><tt>configure</tt></h3><div style="clear:left"></div>
+<div class="paragraph"><p>configureレベルではCIBのオブジェクトに対して設定の変更を行います。</p></div>
+<div class="paragraph"><p>設定内容は「ノードの設定」「リソースの設定」「制約の設定」「属性の設定」の4種類に分類されます。configureレベルのコマンドは、異なるCIBオブジェクトでも共通に使用できるものがあります。</p></div>
+<div class="paragraph"><p>例えば、nodeコマンドは、ノードの設定変更だけではなく、ノードの属性に関する設定変更を実行することができます。</p></div>
+<div class="paragraph"><p>リソースの設定に使用するコマンドは次の通りです。</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<tt>primitive</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>monitor</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>group</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>clone</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>ms</tt>/<tt>master</tt> (master-slave)
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>制約の設定に使用するコマンドは次の通りです。</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<tt>location</tt> (配置制約)
+</p>
+</li>
+<li>
+<p>
+<tt>colocation</tt> (同居制約)
+</p>
+</li>
+<li>
+<p>
+<tt>order</tt> (順序制約)
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>クラスタ全体の挙動を設定するためのクラスタプロパティやリソースのメタ属性、オペレーションのデフォルト値などをも編集することができます。クラスタプロパティ、リソースのメタ属性、オペレーションのデフォルト値は属性値として処理されます。属性の設定に使用するコマンドは次の通りです。</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<tt>property</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>rsc_defaults</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>op_defaults</tt>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>変更された設定は、configureレベルから別のレベルに移動したとき、または、commitコマンドが実行されたときにCIBに反映されます。</p></div>
+<h4 id="cmdhelp_configure_node"><tt>node</tt></h4>
+<div class="paragraph"><p>nodeコマンドでノードを定義することができます。ノードの情報はCRMによって自動的に生成されます。ノードの属性値を編集する場合を除いて、このコマンドでなにか操作を実行する必要はあまりありません。ノードの属性値もこのコマンドで編集可能です。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        node &lt;uname&gt;[:&lt;type&gt;]
+          [attributes &lt;param&gt;=&lt;value&gt; [&lt;param&gt;=&lt;value&gt;...]]
+
+        type :: normal | member | ping</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        node node1
+        node big_node attributes memory=64</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_primitive"><tt>primitive</tt></h4>
+<div class="paragraph"><p>primitiveリソースを定義します。primitiveリソースは、groupリソースやcloneリソース、master/slaveリソースから参照されます。他のリソースから参照されていないprimitiveリソースは単純な一つのリソースとして起動します。</p></div>
+<div class="paragraph"><p>primitiveリソースには三種類に分類することができます。Anonymousリソースはオペレーションが定義されていないリソースです。オペレーションの設定を他のリソースから参照しない場合に使用します。一般的なリソースには、いくつかのオペレーションが定義されます。オペレーションの定義を他のリソースから参照可能な状態とするためには、operationsキーワードを追加し、$id-refパラメータにユニークなIDを設定してください。他のリソースは$id-refの値を参照します。</p></div>
+<div class="paragraph"><p>オペレーションの属性は、instance attributesとして保持されます。オペレーションの属性値として典型的な例は`OCF_CHECK_LEVEL`です。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        primitive &lt;rsc&gt; [&lt;class&gt;:[&lt;provider&gt;:]]&lt;type&gt;
+          [params attr_list]
+          [meta attr_list]
+          [operations id_spec]
+            [op op_type [&lt;attribute&gt;=&lt;value&gt;...] ...]
+
+        attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;
+        id_spec :: $id=&lt;id&gt; | $id-ref=&lt;id&gt;
+        op_type :: start | stop | monitor</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        primitive apcfence stonith:apcsmart \
+          params ttydev=/dev/ttyS0 hostlist="node1 node2" \
+          op start timeout=60s \
+          op monitor interval=30m timeout=60s
+
+        primitive www8 apache \
+          params configfile=/etc/apache/www8.conf \
+          operations $id-ref=apache_ops
+
+        primitive db0 mysql \
+          params config=/etc/mysql/db0.conf \
+          op monitor interval=60s \
+          op monitor interval=300s OCF_CHECK_LEVEL=10</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_monitor"><tt>monitor</tt></h4>
+<div class="paragraph"><p>monitorは最も一般的なオペレーションです。リソースの設定に、monitorオペレーションのみを追加することもできます。primitiveリソースは単純なリソースですが、様々な設定を追加していくと複雑になってしまう場合があります。monitorコマンドは、あくまで単純にmonitorオペレーションを追加することを目的としています。もし、monitorオペレーションに特殊な属性を設定したい場合はprimitiveコマンドを使用してopパラメータを編集してください。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        monitor &lt;rsc&gt;[:&lt;role&gt;] &lt;interval&gt;[:&lt;timeout&gt;]</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        monitor apcfence 60m:60s</tt></pre>
+</div></div>
+<div class="paragraph"><p>上記の例では、primitiveリソースにmonitorオペレーションのinterval(60分)とtimeout(60秒)を設定しています。intervalはmonitorオペレーションが実行される「間隔」、timeoutはmonitorオペレーションが失敗した場合に故障を検知する「タイムアウト(待ち時間)」です。</p></div>
+<h4 id="cmdhelp_configure_group"><tt>group</tt></h4>
+<div class="paragraph"><p>groupリソースを定義します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        group &lt;name&gt; &lt;rsc&gt; [&lt;rsc&gt;...]
+          [meta attr_list]
+          [params attr_list]
+
+        attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        group internal_www disk0 fs0 internal_ip apache \
+          meta target_role=stopped</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_clone"><tt>clone</tt></h4>
+<div class="paragraph"><p>clonrリソースを定義します。一つのprimitiveリソース、または一つのgroupリソースで構成されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        clone &lt;name&gt; &lt;rsc&gt;
+          [meta attr_list]
+          [params attr_list]
+
+        attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        clone cl_fence apc_1 \
+          meta clone-node-max=1 globally-unique=false</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_ms"><tt>ms</tt> (<tt>master</tt>)</h4>
+<div class="paragraph"><p>master/slaveリソースを定義します。一つのprimitiveリソース、または一つのgroupリソースで構成されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        ms &lt;name&gt; &lt;rsc&gt;
+          [meta attr_list]
+          [params attr_list]
+
+        attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        ms disk1 drbd1 \
+          meta notify=true globally-unique=false</tt></pre>
+</div></div>
+<div class="sidebarblock">
+<div class="sidebar-content">
+<div class="sidebar-title">備考 「id-ref」の使用方法</div>
+<div class="paragraph"><p>param属性やmeta属性は、他のリソースに設定された値を参照することができます。これ以外の属性値は他リソースの設定値を参照することはできません。$id-refには、参照元のリソースの$idを設定します。参照元のリソースが存在している場合、CRM-CLIが自動的に参照値を挿入します。</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>    crm(live)configure# primitive a2 www-2 meta $id-ref=a1
+    crm(live)configure# show a2
+    primitive a2 ocf:heartbeat:apache \
+        meta $id-ref="a1-meta_attributes"
+        [...]</tt></pre>
+</div></div>
+<div class="paragraph"><p>id-refで参照されることを考慮して、リソースの属性値にはわかりやすいIDを設定することをお勧めします。</p></div>
+</div></div>
+<h4 id="cmdhelp_configure_location"><tt>location</tt></h4>
+<div class="paragraph"><p>locationはリソースの配置制約を定義します。配置制約は、1つ以上のruleから構成されており、ruleに適合したリソースに対して特定のスコアが割り当てられます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        location &lt;id&gt; &lt;rsc&gt; {node_pref|rules}
+
+        node_pref :: &lt;score&gt;: &lt;node&gt;
+
+        rules ::
+          rule [id_spec] [$role=&lt;role&gt;] &lt;score&gt;: &lt;expression&gt;
+          [rule [id_spec] [$role=&lt;role&gt;] &lt;score&gt;: &lt;expression&gt; ...]
+
+        id_spec :: $id=&lt;id&gt; | $id-ref=&lt;id&gt;
+        score :: &lt;number&gt; | &lt;attribute&gt; | [-]inf
+        expression :: &lt;simple_exp&gt; [bool_op &lt;simple_exp&gt; ...]
+        bool_op :: or | and
+        simple_exp :: &lt;attribute&gt; [type:]&lt;binary_op&gt; &lt;value&gt;
+                      | &lt;unary_op&gt; &lt;attribute&gt;
+                      | date &lt;date_expr&gt;
+        type :: string | version | number
+        binary_op :: lt | gt | lte | gte | eq | ne
+        unary_op :: defined | not_defined
+
+        date_expr :: lt &lt;end&gt;
+                     | gt &lt;start&gt;
+                     | in_range start=&lt;start&gt; end=&lt;end&gt;
+                     | in_range start=&lt;start&gt; &lt;duration&gt;
+                     | date_spec &lt;date_spec&gt;
+        duration|date_spec ::
+                     hours=&lt;value&gt;
+                     | monthdays=&lt;value&gt;
+                     | weekdays=&lt;value&gt;
+                     | yearsdays=&lt;value&gt;
+                     | months=&lt;value&gt;
+                     | weeks=&lt;value&gt;
+                     | years=&lt;value&gt;
+                     | weekyears=&lt;value&gt;
+                     | moon=&lt;value&gt;</tt></pre>
+</div></div>
+<div class="paragraph"><p>Examples:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        location conn_1 internal_www 100: node1
+
+        location conn_1 internal_www \
+          rule 50: #uname eq node1 \
+          rule pingd: defined pingd
+
+        location conn_2 dummy_float \
+          rule -inf: not_defined pingd or pingd number:lte 0</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_colocation"><tt>colocation</tt> (<tt>collocation</tt>)</h4>
+<div class="paragraph"><p>clocationはリソースの同居制約を定義します。二つ以上のリソースに対して、リソース間の制約を定義することができます。同居制約には依存関係の優先度を設定することができます。括弧で囲まれたリソース間の依存関係が優先されます。次の例では、リソースB, Cの依存関係がAとの依存関係よりも優先されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        colocation &lt;id&gt; &lt;score&gt;: &lt;rsc&gt;[:&lt;role&gt;] &lt;rsc&gt;[:&lt;role&gt;] ...</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        colocation dummy_and_apache -inf: apache dummy
+        colocation c1 inf: A ( B C )</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_order"><tt>order</tt></h4>
+<div class="paragraph"><p>orderはリソースの順序制約を定義します。二つ以上のリソースに対して、リソース間の制約を定義することができます。順序居制約には依存関係の優先度を設定することができます。括弧で囲まれたリソース間の依存関係が優先されます。次の例では、リソースB, Cの依存関係がAとの依存関係よりも優先されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        order &lt;id&gt; score-type: &lt;rsc&gt;[:&lt;action&gt;] &lt;rsc&gt;[:&lt;action&gt;] ...
+          [symmetrical=&lt;bool&gt;]
+
+        score-type :: advisory | mandatory | &lt;score&gt;</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        order c_apache_1 mandatory: apache:start ip_1
+        order o1 inf: A ( B C )</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_property"><tt>property</tt></h4>
+<div class="paragraph"><p>propertyコマンドはクラスタの全体的な設定を行います。CIBのcrm_configセクションに値が保持されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        property [$id=&lt;set_id&gt;] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        property stonith-enabled=true</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_rsc_defaults"><tt>rsc_defaults</tt></h4>
+<div class="paragraph"><p>rsc_defaultsコマンドはリソースに設定するmeta属性のデフォルト値を定義します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        rsc_defaults [$id=&lt;set_id&gt;] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        rsc_defaults failure-timeout=3m</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_op_defaults"><tt>op_defaults</tt></h4>
+<div class="paragraph"><p>op_defaultsコマンドはオペレーションに設定するmeta属性のデフォルト値を定義します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        op_defaults [$id=&lt;set_id&gt;] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        op_defaults record-pending=true</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_show"><tt>show</tt></h4>
+<div class="paragraph"><p>`show`コマンドは設定された値を表示します。エディタを使用して設定値を編集することもできます。変更された値のみを表示することも可能です。CRM-CLI形式ではなくXML形式で表示することもできます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        show [xml] [&lt;id&gt; ...]
+        show [xml] changed</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_edit"><tt>edit</tt></h4>
+<div class="paragraph"><p>`edit`コマンドを実行するとエディタが起動します。`show`コマンドを同様に、すべての設定値を一括で編集することもできますし、特定の値のみ編集することもできます。</p></div>
+<div class="paragraph"><p>XML形式で編集することも可能ですがリソースや制約に設定されたIDを変更しないように注意してください。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        edit [xml] [&lt;id&gt; ...]
+        edit [xml] changed</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_delete"><tt>delete</tt></h4>
+<div class="paragraph"><p>`delete`コマンドはオブジェクトを削除します。他のオブジェクトに対して依存関係のある設定内容(例：groupリソースの場合はprimitiveリソースに依存関係があります)が削除された場合、依存関係にあるオブジェクトも一緒に削除されます。また、削除するオブジェクトに依存関係のある制約も全て削除されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        delete &lt;id&gt; [&lt;id&gt;...]</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_rename"><tt>rename</tt></h4>
+<div class="paragraph"><p>`rename`コマンドはオブジェクトの名前を変更します。リソースの名前を変更したい場合は、このコマンドを使用してください。renameコマンドを使用すると依存関係にある制約も一括して変更されます。edirコマンドでリソースの名前を変更した場合は、制約の設定が変更されないため、設定内容に矛盾が生じる可能性があります。</p></div>
+<div class="paragraph"><p>リソースの名前を変更したい場合は、リソースが停止した状態でrenameコマンドを実行してください。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        rename &lt;old_id&gt; &lt;new_id&gt;</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_refresh"><tt>refresh</tt></h4>
+<div class="paragraph"><p>`refresh`コマンドはCIBを更新します。変更がcommitコマンドを使用してクラスタに反映されていない場合は、反映前の変更内容はすべて失われます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        refresh</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_erase"><tt>erase</tt></h4>
+<div class="paragraph"><p>`erase`コマンドはCIBの「すべての」設定を削除します。ただしノード情報の削除対象外です。CIBからノード情報を削除したい場合は、nodesコマンドの使用方法を参照してください。</p></div>
+<div class="paragraph"><p>実行中のクラスタからノードの情報を削除すると、予想外の動作が発生する可能性があるので十分に注意してください。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        erase [nodes]</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_ptest"><tt>ptest</tt></h4>
+<div class="paragraph"><p>`ptest`コマンドを実行してPE(Policy Engine)の遷移グラフを表示します。</p></div>
+<div class="paragraph"><p>CIBには、ユーザが編集した情報だけではなく、実行中のクラスタ状態が保持されています。ユーザ編集した情報を、実行中のクラスタに反映した場合、クラスタの状態がどのように遷移するかをptestコマンドで確認することができます。</p></div>
+<div class="paragraph"><p>クラスタの情報を保持しているstatusセクションは <a href="#cmdhelp_cibstatus"><tt>cibstatus</tt></a> レベルのコマンドで操作することができます。`ptest`コマンドは実際のクラスタ状態を変化させずに、擬似的な遷移グラフを作成します。</p></div>
+<div class="paragraph"><p>`ptest`コマンドの実行結果を図で表示するためには、graphvizをインストールする必要があります。X11環境で`ptest`コマンドを実行すると、dorryが実行され遷移グラフが表示されます。</p></div>
+<div class="paragraph"><p>-vオプションでデバッグレベルを変更することもできます。リソースに割り当てられたスコアを表示することもできます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        ptest [nograph] [v...] [scores]</tt></pre>
+</div></div>
+<div class="paragraph"><p>Examples:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        ptest scores
+        ptest vvvvv</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_cibstatus"><tt>cibstatus</tt></h4>
+<div class="paragraph"><p>cibstatusコマンドはCIBのstatsuセクションを編集、管理します。詳細は<a href="#cmdhelp_cibstatus">CIB status management section</a>を参照してください。</p></div>
+<h4 id="cmdhelp_configure_template"><tt>template</tt></h4>
+<div class="paragraph"><p>templateコマンドは特定のテンプレートをエディタへ取り込みます。ユーザはテンプレートを利用して設定を行うことができます。詳細は<a href="#cmdhelp_template">template section</a>を参照してください。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        template [xml] url</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        template two-apaches.txt</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_commit"><tt>commit</tt></h4>
+<div class="paragraph"><p>commitコマンドは変更内容をCIBに反映します。configureレベルで実行したコマンドはCIBに即座に反映されるわけではありません。変更内容がCIBに反映されるタイミングは、`commit`コマンドを実行したとき、またはconfigureレベルを抜けたときのいずれかです。複数のユーザが同時に編集を行っている場合は、設定内容の反映が拒否されることもあります。このような場合あh、`force`オプションを追加して強制的に変更を反映することもできます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        commit [force]</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_verify"><tt>verify</tt></h4>
+<div class="paragraph"><p>verifyコマンドを使用して変更内容を検証することができます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        verify</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_upgrade"><tt>upgrade</tt></h4>
+<div class="paragraph"><p>`CIB not supported`というエラーが出力された場合は、CIBのバージョンが古い可能性があります。updateコマンドを実行してCIBのバージョンを更新してください。updateコマンドは、内部的にcibadminコマンドを呼び出します。</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>    # cibadmin --upgrade --force</tt></pre>
+</div></div>
+<div class="paragraph"><p>エラーが出力されない場合でも、CIBのバージョンが古いということがわかっているのであれば、forceオプションを使用して強制的にバージョンアップしてください。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        upgrade [force]</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_save"><tt>save</tt></h4>
+<div class="paragraph"><p>saveコマンドは設定内容をファイルに保存します。XML形式で保存することも可能です。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        save [xml] &lt;file&gt;</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        save myfirstcib.txt</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_load"><tt>load</tt></h4>
+<div class="paragraph"><p>loadコマンドはローカルまたはネットワーク上のファイルを読み込みます。`replace`オプションを使用した場合、現在の設定を削除して新しい設定を読み込みます。`update`オプションを使用した場合、現在の設定は上書きされます。ファイルの形式はCLIまたはXMLです。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        load [xml] &lt;method&gt; URL
+
+        method :: replace | update</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        load xml update myfirstcib.xml
+        load xml replace http://storage.big.com/cibs/bigcib.xml</tt></pre>
+</div></div>
+<h4 id="cmdhelp_configure_xml"><tt>xml</tt></h4>
+<div class="paragraph"><p>CRM-CLIはXMLを編集しないことを前提としていますが、CIBの内容が複雑になると、まれにXMLを直接編集しなければならない場合があります。このような場合はxmlコマンドを使用してください。xmlコマンドを使用して、XMLの各要素を直接編集することができます。手動編集によってXMLの構文が冗長になってしまった場合などは、CRM-CLIが自動的に通常の形式へ変換します。ただし、xmlコマンドを使用することはほとんどないはずです。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        xml &lt;xml&gt;</tt></pre>
+</div></div>
+<h3 id="cmdhelp_template"><tt>template</tt></h3><div style="clear:left"></div>
+<div class="paragraph"><p>事前に準備されたテンプレートを使用してクラスタの設定を行うことができます。テンプレートは典型的なクラスタの雛形です。ユーザはテンプレートの一部のパラメータを変更するだけで容易にクラスタを設定することができます。</p></div>
+<div class="paragraph"><p>このコマンドはtemplateレベルだけではなく、configurationレベルのさらに下の階層(configuration/template)でも実行可能です。</p></div>
+<h4 id="cmdhelp_template_new"><tt>new</tt></h4>
+<div class="paragraph"><p>newコマンドは新しいテンプレートを作成します。テンプレートは同時に複数作成することもできます。configurationレベルとtemplateレベルの設定内容は別々に保存されます。それぞれのレベルで同じ名前のテンプレートを作成することもできます。</p></div>
+<div class="paragraph"><p>必要なパラメータがすでにわかっている場合は、テンプレートを作成する段階で値を入力することができます。</p></div>
+<div class="paragraph"><p>パラメータのIDはデフォルトで設定名が使用されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        new &lt;config&gt; &lt;template&gt; [&lt;template&gt; ...] [params name=value ...]"</tt></pre>
+</div></div>
+<div class="paragraph"><p>Examples:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        new vip virtual-ip
+        new bigfs ocfs2 params device=/dev/sdx8 directory=/bigfs</tt></pre>
+</div></div>
+<h4 id="cmdhelp_template_load"><tt>load</tt></h4>
+<div class="paragraph"><p>loadコマンドは既存のテンプレートを読み込みます。<tt>edit</tt>, <tt>show</tt>, <tt>apply</tt> の各コマンドは読み込まれたテンプレートを参照します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        load &lt;config&gt;</tt></pre>
+</div></div>
+<h4 id="cmdhelp_template_edit"><tt>edit</tt></h4>
+<div class="paragraph"><p>editコマンドでエディタを起動し、テンプレートを編集することができます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        edit [&lt;config&gt;]</tt></pre>
+</div></div>
+<h4 id="cmdhelp_template_delete"><tt>delete</tt></h4>
+<div class="paragraph"><p>deleteコマンドでテンプレートを削除することができます。読み込まれた設定は強制的に削除されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        delete &lt;config&gt; [force]</tt></pre>
+</div></div>
+<h4 id="cmdhelp_template_list"><tt>list</tt></h4>
+<div class="paragraph"><p>listコマンドは利用可能なテンプレートを表示します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        list [templates]</tt></pre>
+</div></div>
+<h4 id="cmdhelp_template_apply"><tt>apply</tt></h4>
+<div class="paragraph"><p>applyコマンドはテンプレートの内容をライブCIBに適用します。デフォルトでは、updateオプションが使用されるためCIBは上書きされます。replaceオプションを指定した場合は、CIBは一度削除されたあと新しい設定が適用されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        apply [&lt;method&gt;] [&lt;config&gt;]
+
+        method :: replace | update</tt></pre>
+</div></div>
+<h4 id="cmdhelp_template_show"><tt>show</tt></h4>
+<div class="paragraph"><p>showコマンドはテンプレートの内容を表示します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        show [&lt;config&gt;]</tt></pre>
+</div></div>
+<h3 id="cmdhelp_cibstatus"><tt>cibstatus</tt></h3><div style="clear:left"></div>
+<div class="paragraph"><p>CIBのcibstatusセクションは、実行中のノードやリソースの情報を保持しています。このセクションが保持する情報が変更されるのは、リソースのオペレーションが実行されたとき、ノードの状態が変更されたときに限られています。cibstatusセクションはCRMによって変更されますが、CRMはcibstatusセクションを編集するためのユーザインターフェースを提供していません。このため、cibstatusセクションは基本的に読み込み専用領域となります。cibstatusセクションはディスク上のファイルには保存されません。cibstatusセクションの状態は、`cibadmin -Q`コマンドで表示することができます。</p></div>
+<div class="paragraph"><p>cibstatusセクションが変更されるとPolicy Engineの挙動にどのような影響を与えるのかは興味深い点です。cibstatsuレベルで提供されているコマンドは、CIBのstatusセクションに保持された様々な値を表示します。状態遷移の詳細については、<a href="#cmdhelp_configure_ptest"><tt>ptest</tt></a>を参照してください。</p></div>
+<h4 id="cmdhelp_cibstatus_load"><tt>load</tt></h4>
+<div class="paragraph"><p>loadコマンドはファイルやシャドウCIB、ライブCIBからstatusセクションを読み込みます。デフォルトではライブCIBからstatusセクションを読み込みます。ユーザがファイルやシャドウCIBからstatusセクションを読み込でいる状態では、クラスタの状態遷移がCIBに反映されない場合があります。ユーザの参照している領域をクラスタが上書きしてしまう可能性があるからです。クラスタの状態遷移をCIBに反映するためには、`locad live`コマンドを実行してください。</p></div>
+<div class="paragraph"><p>シャドウCIBも、statusセクションを保持していますが、この情報はシャドウCIBが作成されたときのものです。よってライブCIBとは異なるstatus情報を保持している可能性があります。よって、ptestコマンドはデフォルトでライブCIBのstatusセクションを参照します。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        load {&lt;file&gt;|shadow:&lt;cib&gt;|live}</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        load bug-12299.xml
+        load shadow:test1</tt></pre>
+</div></div>
+<h4 id="cmdhelp_cibstatus_save"><tt>save</tt></h4>
+<div class="paragraph"><p>saveコマンドはstatusセクションの内容をファイルもしくはシャドウCIBへ保存します。</p></div>
+<div class="paragraph"><p>CIBのフォーマットで記述されたファイルが既に存在する場合は、statusセクションの変更内容のみが置換されます、。CIBのフォーマットで記述されたファイルが存在しない場合h、statusセクションだけではなくすべての設定が保存さます。</p></div>
+<div class="paragraph"><p>引数が省略された場合は、statusセクションの変更はオリジナルのCIBに保存されます。オリジナルのCIBとは実行中のクラスタが参照するライブCIBのことです。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        save [&lt;file&gt;|shadow:&lt;cib&gt;]</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        save bug-12299.xml</tt></pre>
+</div></div>
+<h4 id="cmdhelp_cibstatus_origin"><tt>origin</tt></h4>
+<div class="paragraph"><p>originコマンドは実行中のクラスタで使用している設定を表示します。最新の設定が表示さえます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        origin</tt></pre>
+</div></div>
+<h4 id="cmdhelp_cibstatus_show"><tt>show</tt></h4>
+<div class="paragraph"><p>showコマンドはクラスタの状態をXML形式で表示します。出力された内容を理解するためニアh、XMLやCIBの知識が必要となります。changeオプションを使用すると、いくぶんかは読みやすい出力になるかもしれません。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        show [changed]</tt></pre>
+</div></div>
+<h4 id="cmdhelp_cibstatus_node"><tt>node</tt></h4>
+<div class="paragraph"><p>nodeコマンドはノードの状態を変更します。ノードをクラスタから除外したり、新しいノードをクラスタへ参加させたりするだけではなく、クラスタに参加しているノードの状態をuncleanへ変更することもできます。</p></div>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+<tt>online</tt>
+</dt>
+<dd>
+<p>
+node_state, crmdの属性をonlineへ変更します。また、expexted, joinの属性をmemberへ変更します。ノードはクラスタへ参加します。
+</p>
+</dd>
+<dt class="hdlist1">
+<tt>offline</tt>
+</dt>
+<dd>
+<p>
+node_state, crmdの属性をofflineへ変更します。また、expextedの属性を削除します。ノードはクラスタから除外されます。
+</p>
+</dd>
+<dt class="hdlist1">
+<tt>unclean</tt>
+</dt>
+<dd>
+<p>
+node_state, crmdの属性をuncleanへ変更します。また、expextedの属性をmemberへ変更します。ノードはクラスタ内でオフライン状態となります。
+</p>
+</dd>
+</dl></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        node &lt;node&gt; {online|offline|unclean}</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        node xen-b unclean</tt></pre>
+</div></div>
+<h4 id="cmdhelp_cibstatus_op"><tt>op</tt></h4>
+<div class="paragraph"><p>opコマンドを使用してリソースのオペレーションに設定された名前などを編集することができます。オペレーションが実行されると、通常はリソースエージェントから規定の返り値が戻されます。オペレーションの状態(op_status)を変更することも可能です。オペレーションの状態をdone以外に設定する場合は、リソースエージェントからの返り値は無視されます。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        op &lt;operation&gt; &lt;resource&gt; &lt;exit_code&gt; [&lt;op_status&gt;] [&lt;node&gt;]
+
+        operation :: probe | monitor[:&lt;n&gt;] | start | stop |
+           promote | demote | notify | migrate_to | migrate_from
+        exit_code :: &lt;rc&gt; | success | generic | args |
+           unimplemented | perm | installed | configured | not_running |
+           master | failed_master
+        op_status :: pending | done | cancelled | timeout | notsupported | error
+
+        n :: the monitor interval in seconds; if omitted, the first
+           recurring operation is referenced
+        rc :: numeric exit code in range 0..9</tt></pre>
+</div></div>
+<div class="paragraph"><p>使用例:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        op start d1 xen-b generic
+        op start d1 xen-b 1
+        op monitor d1 xen-b not_running
+        op stop d1 xen-b 0 timeout</tt></pre>
+</div></div>
+<h3 id="_tt_end_tt_tt_cd_tt_tt_up_tt"><tt>end</tt> (<tt>cd</tt>, <tt>up</tt>)</h3><div style="clear:left"></div>
+<div class="paragraph"><p>endコマンドは現在のレベルを終了して、一つ上のレベルへ移動します。このコマンドはどのレベルでも利用可能です。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        end</tt></pre>
+</div></div>
+<h3 id="_tt_help_tt"><tt>help</tt></h3><div style="clear:left"></div>
+<div class="paragraph"><p>helpコマンドは、現在のレベルで実行可能なコマンドや、コマンドのオプションについての情報を表示します。このコマンドはどのレベルでも利用可能です。</p></div>
+<div class="paragraph"><p>使用方法:</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>        help [&lt;topic&gt;]</tt></pre>
+</div></div>
+<h3 id="_tt_quit_tt_tt_exit_tt_tt_bye_tt"><tt>quit</tt> (<tt>exit</tt>, <tt>bye</tt>)</h3><div style="clear:left"></div>
+<div class="paragraph"><p>CRM-CLIを終了します。</p></div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 0.94<br />
+Last updated 2012-02-02 13:58:24 JST
+</div>
+</div>
+</body>
+</html>
