@@ -1,6 +1,6 @@
 Linux-HA関連のドキュメントを管理するリポジトリです。
 
-ディレクトリ構成(2012年1月25日)
+ディレクトリ構成(2012年2月27日)
 
 - pacemaker-1.0-crm-cli(CRM CLIの翻訳)
  - omegat	OmegaT用ファイル
@@ -9,3 +9,9 @@ Linux-HA関連のドキュメントを管理するリポジトリです。
 - pacemaker-1.0-Pacemaker_Explained(Pacemaker_Explainedの翻訳)
  - omegat	OmegaT用ファイル
  - publican	publicanで変換したファイル(予定)
+
+- linux-ha-doc  http://hg.linux-ha.org/doc から提供されているドキュメント
+ - dev-guides   The OCF Resource Agent Developer's Guide の翻訳
+ - users-guide  The Linux-HA User's Guide の翻訳
+  		いずれもasciidoc形式。変換には GNU Source-highlight が必要です。
+		http://www.gnu.org/software/src-highlight/
