@@ -1,0 +1,109 @@
+<author>
+  <firstname>Florian</firstname>
+  <surname>Haas</surname>
+  <affiliation>
+    <orgname>hastexo</orgname>
+  </affiliation>
+  <email>florian.haas@hastexo.com</email>
+</author>
+<collab>
+  <firstname>John</firstname>
+  <surname>Shi</surname>
+  <affiliation>
+    <orgname>SUSE</orgname>
+  </affiliation>
+  <contrib>Original ocft README</contrib>
+  <email>jshi@suse.com</email>
+</collab>
+<collab>
+  <firstname>Dejan</firstname>
+  <surname>Muhamedagic</surname>
+  <affiliation>
+    <orgname>SUSE</orgname>
+  </affiliation>
+  <contrib>ocft documentation rewrite</contrib>
+  <email>dmuhamedagic@suse.com</email>
+</collab>
+<collab>
+  <firstname>Keisuke</firstname>
+  <surname>MORI</surname>
+  <affiliation>
+    <orgname>Linux-HA Japan project</orgname>
+  </affiliation>
+  <contrib>日本語訳</contrib>
+  <email>linux-ha-japan@lists.osdn.me</email>
+</collab>
+<copyright>
+  <year>2010</year>
+  <year>2011</year>
+  <holder>
+    <ulink url="http://www.linbit.com">LINBIT HA-Solutions GmbH</ulink>
+  </holder>
+</copyright>
+<copyright>
+  <year>2011</year>
+  <holder>
+    <ulink url="http://www.novell.com">Novell, Inc.</ulink>
+  </holder>
+</copyright>
+<copyright>
+  <year>2011</year>
+  <holder>
+    <ulink url="http://www.suse.com">SUSE Linux GmbH</ulink>
+  </holder>
+</copyright>
+<copyright>
+  <year>2011</year>
+  <holder>
+    <ulink url="http://www.hastexo.com">hastexo Professional Services GmbH</ulink>
+  </holder>
+</copyright>
+<copyright>
+  <year>2018</year>
+  <holder>
+    <ulink url="http://linux-ha.osdn.jp/">Linux-HA Japan project</ulink>
+  </holder>
+</copyright>
+<legalnotice>
+  <title>ライセンス情報</title>
+  <para>この文書に含まれる文章、図は、クリエイティブ・コモンズ
+  表示 - 継承 3.0 非移植 (CC BY-SA 3.0) によってライセンスされています。
+  </para>
+  <itemizedlist>
+    <listitem>
+      <para>CC-BY-SA の要約は <ulink
+      url="http://creativecommons.org/licenses/by-sa/3.0/"/>
+	で参照可能です。</para>
+    </listitem>
+    <listitem>
+      <para>ライセンス全文は <ulink
+      url="http://creativecommons.org/licenses/by-sa/3.0/legalcode"/>
+	で参照可能です。</para>
+    </listitem>
+    <listitem>
+      <para>CC-BY-SA に従い、この文書を再配布もしくは改変する場合は、
+	原文の URL を提供する必要があります。</para>
+    </listitem>
+    <listitem>
+      <para>日本語訳への追記: 本日本語訳の原文は <ulink url="https://github.com/ClusterLabs/resource-agents/tree/master/doc/dev-guides"/>
+      で参照可能です。</para>
+    </listitem>
+  </itemizedlist>
+</legalnotice>
+<revhistory>
+  <revision>
+    <revnumber>1.0.2</revnumber>
+    <date>November 18, 2011</date>
+    <authorinitials>FGH</authorinitials>
+  </revision>
+  <revision>
+    <revnumber>1.0.1</revnumber>
+    <date>January 3, 2011</date>
+    <authorinitials>FGH</authorinitials>
+  </revision>
+  <revision>
+    <revnumber>1.0.0</revnumber>
+    <date>December 13, 2010</date>
+    <authorinitials>FGH</authorinitials>
+  </revision>
+</revhistory>
